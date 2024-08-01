@@ -10,7 +10,6 @@ namespace LusionTech_CRM_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class AccountsController : ControllerBase
     {
         private readonly IAccountRepository _repository;
@@ -20,7 +19,6 @@ namespace LusionTech_CRM_API.Controllers
             _repository = repository;
         }
 
-        // GET: api/Accounts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AccountDTO>>> GetAccounts()
         {
@@ -35,7 +33,6 @@ namespace LusionTech_CRM_API.Controllers
             return accountDTOs;
         }
 
-        // GET: api/Accounts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AccountDTO>> GetAccount(Guid id)
         {
@@ -55,7 +52,7 @@ namespace LusionTech_CRM_API.Controllers
             return accountDTO;
         }
 
-        // PUT: api/Accounts/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAccount(Guid id, AccountDTO accountDTO)
         {
@@ -90,7 +87,7 @@ namespace LusionTech_CRM_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Accounts
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<AccountDTO>> PostAccount(AccountDTO accountDTO)
         {

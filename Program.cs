@@ -39,6 +39,13 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
+});
+
+
 builder.Services.AddControllers();
 
 // Configure Swagger/OpenAPI

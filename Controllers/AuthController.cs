@@ -46,7 +46,8 @@ namespace LusionTech_CRM_API.Controllers
             {
                 Username = registerDTO.Username,
                 Email = registerDTO.Email,
-                Password = registerDTO.Password
+                Password = registerDTO.Password,
+                Role = registerDTO.Role  // Assign role
             };
 
             user = await _authService.Register(user);
@@ -65,5 +66,6 @@ namespace LusionTech_CRM_API.Controllers
                 Username = user.Username
             });
         }
+
     }
 }

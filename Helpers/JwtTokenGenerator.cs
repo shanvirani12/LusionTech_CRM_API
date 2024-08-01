@@ -23,9 +23,10 @@ namespace LusionTech_CRM_API.Helpers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email)
-                }),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.Role)  // Add role to claims
+        }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -33,6 +34,7 @@ namespace LusionTech_CRM_API.Helpers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
     }
 
 }

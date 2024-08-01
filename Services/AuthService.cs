@@ -14,7 +14,8 @@ namespace LusionTech_CRM_API.Services
 
         public async Task<User> Authenticate(string email, string password)
         {
-            return await _userRepository.Authenticate(email, password);
+            var user = await _userRepository.Authenticate(email, password);
+            return user;
         }
 
         public async Task<User> Register(User user)
@@ -22,4 +23,5 @@ namespace LusionTech_CRM_API.Services
             return await _userRepository.Register(user);
         }
     }
+
 }
