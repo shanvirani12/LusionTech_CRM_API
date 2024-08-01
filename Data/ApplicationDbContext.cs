@@ -12,6 +12,6 @@ namespace LusionTech_CRM_API.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        // Add other DbSets as needed
+        public DbSet<Bid> Bids { get; set; }
     }
 }
